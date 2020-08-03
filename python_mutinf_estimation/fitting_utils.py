@@ -17,7 +17,7 @@ def fit_linear_to_array(data, x, data_err):
     params = np.empty((data.shape[0], 4))
     model = LinearModel()
     for i in range(data.shape[0]):
-        result = model.fit(data=data, x=x, weights=1/data_err**2)
+        result = model.fit(data=data[i, :], x=x, weights=1/data_err[i, :]**2)
 
         params[i, 0] = result.params["slope"].value
         params[i, 1] = result.params["slope"].stderr
